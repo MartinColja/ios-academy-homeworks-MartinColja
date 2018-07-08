@@ -9,9 +9,11 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    var numberOfTaps:Int = 0
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        label.text="\(numberOfTaps)"
 
         // Do any additional setup after loading the view.
     }
@@ -21,7 +23,13 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func OnButtonClick(_ sender: Any) {
+        numberOfTaps+=1
+        label.text="\(numberOfTaps)"
+    }
+    
+    @IBOutlet weak var label: UILabel!
+    
     /*
     // MARK: - Navigation
 
