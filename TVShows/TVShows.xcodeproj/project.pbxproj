@@ -12,6 +12,8 @@
 		5C89C27620EE6F4500A49751 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C89C27420EE6F4500A49751 /* LaunchScreen.storyboard */; };
 		5C89C28120EE6F4500A49751 /* TVShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C28020EE6F4500A49751 /* TVShowsTests.swift */; };
 		5C89C28C20EE6F4600A49751 /* TVShowsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C28B20EE6F4600A49751 /* TVShowsUITests.swift */; };
+		5CC8F3A120F280C400AAD6B4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC8F3A020F280C400AAD6B4 /* Login.storyboard */; };
+		5CC8F3A320F2937600AAD6B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC8F3A220F2937600AAD6B4 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		5C89C28720EE6F4500A49751 /* TVShowsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C89C28B20EE6F4600A49751 /* TVShowsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsUITests.swift; sourceTree = "<group>"; };
 		5C89C28D20EE6F4600A49751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CC8F3A020F280C400AAD6B4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		5CC8F3A220F2937600AAD6B4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,8 @@
 		5CC8F39F20F27EA600AAD6B4 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5CC8F3A020F280C400AAD6B4 /* Login.storyboard */,
+				5CC8F3A220F2937600AAD6B4 /* LoginViewController.swift */,
 			);
 			name = Login;
 			path = "New Group";
@@ -234,6 +240,7 @@
 			files = (
 				5C89C27620EE6F4500A49751 /* LaunchScreen.storyboard in Resources */,
 				5C89C27320EE6F4500A49751 /* Assets.xcassets in Resources */,
+				5CC8F3A120F280C400AAD6B4 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC8F3A320F2937600AAD6B4 /* LoginViewController.swift in Sources */,
 				5C89C26C20EE6F4400A49751 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
