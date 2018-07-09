@@ -14,6 +14,16 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         label.text="\(numberOfTaps)"
+        spinner.hidesWhenStopped = true
+        spinnerButton.backgroundColor = UIColor.red
+        spinnerButton.isEnabled = false
+        spinnerButton.setTitle("Loading", for: .disabled)
+        spinner.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.spinner.stopAnimating()
+            self.spinnerButton.isEnabled = true
+            self.spinnerButton.backgroundColor = UIColor.green
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -28,8 +38,27 @@ class LoginViewController: UIViewController {
         label.text="\(numberOfTaps)"
     }
     
+    
+    @IBOutlet weak var spinnerButton: UIButton!
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     @IBOutlet weak var label: UILabel!
     
+    @IBAction func toggleSpinner(_ sender: UIButton) {
+        
+        let currentTitle: String? = spinnerButton.currentTitle
+        
+        if (currentTitle == "Start"){
+            spinnerButton.backgroundColor = UIColor.red
+            spinnerButton.setTitle("Stop", for: .normal)
+            spinner.startAnimating()
+        } else {
+            spinnerButton.backgroundColor = UIColor.green
+            spinnerButton.setTitle("Start", for: .normal)
+            spinner.stopAnimating()
+        }
+    }
     /*
     // MARK: - Navigation
 
