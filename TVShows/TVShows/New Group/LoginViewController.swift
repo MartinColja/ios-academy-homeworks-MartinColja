@@ -10,6 +10,10 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var usernameTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +25,32 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        underlineUsernameTextField()
+        underlinePasswordTextField()
+    }
+    
+    func underlineUsernameTextField() {
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGray.cgColor
+        border.frame = CGRect(x: 0, y: usernameTextField.frame.size.height - width + 1, width: usernameTextField.frame.size.width, height: usernameTextField.frame.size.height)
+        
+        border.borderWidth = width
+        usernameTextField.layer.addSublayer(border)
+        usernameTextField.layer.masksToBounds = true
+    }
+    
+    func underlinePasswordTextField() {
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGray.cgColor
+        border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height - width + 1, width: passwordTextField.frame.size.width, height: passwordTextField.frame.size.height)
+        
+        border.borderWidth = width
+        passwordTextField.layer.addSublayer(border)
+        passwordTextField.layer.masksToBounds = true
+    }
 
     /*
     // MARK: - Navigation

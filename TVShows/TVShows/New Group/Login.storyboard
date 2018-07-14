@@ -19,25 +19,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="DhD-C0-Axg">
-                                <rect key="frame" x="10" y="98" width="300" height="392.5"/>
+                                <rect key="frame" x="10" y="96.5" width="300" height="395.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" image="login-logo" translatesAutoresizingMaskIntoConstraints="NO" id="K3K-AX-aLx">
                                         <rect key="frame" x="112.5" y="0.0" width="75" height="80"/>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="WCj-Ui-Ap0">
-                                        <rect key="frame" x="0.0" y="155" width="300" height="237.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="WCj-Ui-Ap0">
+                                        <rect key="frame" x="0.0" y="155" width="300" height="240.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3A1-GJ-HNI">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="3A1-GJ-HNI">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="69"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kjD-wQ-DfD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kjD-wQ-DfD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K76-0i-jWh">
-                                                        <rect key="frame" x="0.0" y="50" width="300" height="30"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K76-0i-jWh">
+                                                        <rect key="frame" x="0.0" y="52" width="300" height="17"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -45,7 +45,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="1DU-UI-PfQ">
-                                                <rect key="frame" x="0.0" y="102" width="300" height="71"/>
+                                                <rect key="frame" x="0.0" y="98" width="300" height="71"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="TAY-xL-Dsm">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
@@ -83,7 +83,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="heu-zJ-aQb">
-                                                <rect key="frame" x="0.0" y="195" width="300" height="42.5"/>
+                                                <rect key="frame" x="0.0" y="198" width="300" height="42.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WQ-Ta-u3I">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="14.5"/>
@@ -117,6 +117,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WFD-cE-IKV"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="K76-0i-jWh" id="rsK-ZE-MEO"/>
+                        <outlet property="usernameTextField" destination="kjD-wQ-DfD" id="GIu-wX-SRr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldE-Ag-8du" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
