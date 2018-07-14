@@ -10,16 +10,31 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    var rememberME: Bool = false
+    
+    @IBOutlet weak var checkboxButton: UIButton!
+    
     @IBOutlet weak var usernameTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    @IBAction func checkboxButtonToggle(_ sender: Any) {
+        if ( rememberME ) {
+            rememberME = false
+            checkboxButton.setImage(UIImage(named: "ic-checkbox-empty"), for: .normal)
+        } else {
+            rememberME = true
+            checkboxButton.setImage(UIImage(named: "ic-checkbox-filled"), for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
