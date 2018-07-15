@@ -54,6 +54,9 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <state key="normal" image="ic-checkbox-empty"/>
+                                                                <connections>
+                                                                    <action selector="checkboxButtonToggle:" destination="vxW-nj-MyG" eventType="touchUpInside" id="bU0-Jt-daJ"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Tg-5m-dIS">
                                                                 <rect key="frame" x="30" y="0.0" width="270" height="24"/>
@@ -119,6 +122,7 @@
                         <viewLayoutGuide key="safeArea" id="WFD-cE-IKV"/>
                     </view>
                     <connections>
+                        <outlet property="checkboxButton" destination="imq-fI-3jY" id="ZDB-dP-0aZ"/>
                         <outlet property="passwordTextField" destination="K76-0i-jWh" id="rsK-ZE-MEO"/>
                         <outlet property="usernameTextField" destination="kjD-wQ-DfD" id="GIu-wX-SRr"/>
                     </connections>
