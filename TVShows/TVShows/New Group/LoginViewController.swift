@@ -20,12 +20,12 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func checkboxButtonToggle(_ sender: Any) {
+        
+        rememberME = !rememberME
         if ( rememberME ) {
-            rememberME = false
-            checkboxButton.setImage(UIImage(named: "ic-checkbox-empty"), for: .normal)
-        } else {
-            rememberME = true
             checkboxButton.setImage(UIImage(named: "ic-checkbox-filled"), for: .normal)
+        } else {
+            checkboxButton.setImage(UIImage(named: "ic-checkbox-empty"), for: .normal)
         }
     }
     
@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
