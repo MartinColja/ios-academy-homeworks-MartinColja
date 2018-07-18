@@ -15,6 +15,7 @@
 		5C89C27620EE6F4500A49751 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C89C27420EE6F4500A49751 /* LaunchScreen.storyboard */; };
 		5C89C28120EE6F4500A49751 /* TVShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C28020EE6F4500A49751 /* TVShowsTests.swift */; };
 		5C89C28C20EE6F4600A49751 /* TVShowsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C28B20EE6F4600A49751 /* TVShowsUITests.swift */; };
+		5C8D08FF20FF693600FEDDB2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D08FE20FF693600FEDDB2 /* User.swift */; };
 		5CC8F3A720F2B75500AAD6B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CC8F3A620F2B75500AAD6B4 /* Assets.xcassets */; };
 		A3F435D2E22CA3040DE02CCF /* Pods_TVShowsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D63B64B4FC1A1317B50206 /* Pods_TVShowsTests.framework */; };
 		A8FBA351A1F0808CB87C4EF9 /* Pods_TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA5D1335043B18B1A41492B /* Pods_TVShows.framework */; };
@@ -53,6 +54,7 @@
 		5C89C28720EE6F4500A49751 /* TVShowsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C89C28B20EE6F4600A49751 /* TVShowsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsUITests.swift; sourceTree = "<group>"; };
 		5C89C28D20EE6F4600A49751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C8D08FE20FF693600FEDDB2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5CC8F3A620F2B75500AAD6B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64D63B64B4FC1A1317B50206 /* Pods_TVShowsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVShowsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72868009C504560FC40C01D7 /* Pods-TVShowsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVShowsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVShowsTests/Pods-TVShowsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				5C1BE46820F935F800E29CA0 /* Login.storyboard */,
 				5C1BE46A20F9360800E29CA0 /* LoginViewController.swift */,
 				5C418D9C20FE91170005E723 /* HomeViewController.swift */,
+				5C8D08FE20FF693600FEDDB2 /* User.swift */,
 			);
 			name = Login;
 			path = "New Group";
@@ -391,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C8D08FF20FF693600FEDDB2 /* User.swift in Sources */,
 				5C1BE46B20F9360800E29CA0 /* LoginViewController.swift in Sources */,
 				5C89C26C20EE6F4400A49751 /* AppDelegate.swift in Sources */,
 				5C418D9D20FE91170005E723 /* HomeViewController.swift in Sources */,

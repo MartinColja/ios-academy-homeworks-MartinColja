@@ -36,7 +36,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5QI-UR-z5W">
                                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="47.333333333333336"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kjD-wQ-DfD">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kjD-wQ-DfD">
                                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="36"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -167,8 +167,8 @@
                     <navigationItem key="navigationItem" id="9bL-Mm-IYb"/>
                     <connections>
                         <outlet property="checkboxButton" destination="imq-fI-3jY" id="miF-7G-kVy"/>
+                        <outlet property="emailTextField" destination="kjD-wQ-DfD" id="eic-IO-OBT"/>
                         <outlet property="passwordTextField" destination="K76-0i-jWh" id="68T-2J-iMI"/>
-                        <outlet property="usernameTextField" destination="kjD-wQ-DfD" id="GG4-dy-lYA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pod-uP-uko" userLabel="First Responder" sceneMemberID="firstResponder"/>

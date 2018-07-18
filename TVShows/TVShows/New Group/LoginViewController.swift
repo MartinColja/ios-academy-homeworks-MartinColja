@@ -8,38 +8,100 @@
 
 import UIKit
 import SVProgressHUD
+import Alamofire
+import CodableAlamofire
 
 class LoginViewController: UIViewController {
     
     private var rememberME: Bool = false
+    
+    private var _user: User? = nil
+    
+    private var _loginUser: LoginUser? = nil
 
     @IBOutlet weak var checkboxButton: UIButton!
     
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+        _loginUserWith(email: emailTextField.text!, password: passwordTextField.text!)
         
+    }
+    
+    func pushHomeView() {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         
         let homeViewController =
             storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-
+        
         navigationController?.pushViewController(homeViewController, animated:
             true)
     }
     
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        if !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
+            _registerUserWith(email: emailTextField.text!, password: passwordTextField.text!)
+        }
         
-        let homeViewController =
-            storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+    }
+    
+    private func _registerUserWith(email: String, password: String) {
+        SVProgressHUD.show()
         
-        navigationController?.pushViewController(homeViewController, animated:
-            true)
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password
+        ]
         
+        Alamofire
+            .request("https://api.infinum.academy/api/users",
+                     method: .post,
+                     parameters: parameters,
+                     encoding: JSONEncoding.default)
+            .validate()
+            .responseDecodableObject(keyPath: "data", decoder: JSONDecoder()) { [weak self] (dataResponse: DataResponse<User>) in
+                
+                SVProgressHUD.dismiss()
+                
+                switch dataResponse.result {
+                case .success(let user):
+                    self!._user = user
+                    self!._loginUserWith(email: email, password: password)
+                case .failure(let error):
+                    print("API failure: \(error)")
+                }
+        }
+    }
+    
+    private func _loginUserWith(email: String, password: String) {
+        SVProgressHUD.show()
+        
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password
+        ]
+        
+        Alamofire
+            .request("https://api.infinum.academy/api/users/sessions",
+                     method: .post,
+                     parameters: parameters,
+                     encoding: JSONEncoding.default)
+            .validate()
+            .responseDecodableObject(keyPath: "data", decoder: JSONDecoder()) { [weak self] (dataResponse: DataResponse<LoginUser>) in
+                
+                SVProgressHUD.dismiss()
+                
+                switch dataResponse.result {
+                case .success(let loginUser):
+                    self!._loginUser = loginUser
+                    self!.pushHomeView()
+                case .failure(let error):
+                    print("API failure: \(error)")
+                }
+        }
     }
     
     @IBAction func checkboxButtonToggle(_ sender: Any) {
