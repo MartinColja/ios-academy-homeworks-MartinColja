@@ -58,13 +58,32 @@ class LoginViewController: UIViewController {
                     self!._loginUserWith(email: email, password: password)
                     break
                 case .failure(let error):
-                    print("API failure: \(error)")
+                    
+                    
+                    let message : String
+                    if let httpStatusCode = dataResponse.response?.statusCode {
+                        switch(httpStatusCode) {
+                        case 400:
+                            message = "Correct email or password not provided."
+                        case 401:
+                            message = "Incorrect email or password."
+                        case 422:
+                            message = "Correct email or password not provided."
+                        default:
+                            message = error.localizedDescription
+                        }
+                    } else {
+                        message = error.localizedDescription
+                    }
+                    
+                    print("API failure: \(error.localizedDescription)")
+                    SVProgressHUD.showInfo(withStatus: message)
                     break
                 }
         }
     }
     
-    //communicates with register user api
+    //communicates with login user api
     private func _loginUserWith(email: String, password: String) {
         SVProgressHUD.show()
         
@@ -89,7 +108,24 @@ class LoginViewController: UIViewController {
                     self!._pushHomeView()
                     break
                 case .failure(let error):
-                    print("API failure: \(error)")
+                    let message : String
+                    if let httpStatusCode = dataResponse.response?.statusCode {
+                        switch(httpStatusCode) {
+                        case 400:
+                            message = "Correct email or password not provided."
+                        case 401:
+                            message = "Incorrect email or password."
+                        case 422:
+                            message = "Correct email or password not provided."
+                        default:
+                            message = error.localizedDescription
+                        }
+                    } else {
+                        message = error.localizedDescription
+                    }
+                    
+                    print("API failure: \(error.localizedDescription)")
+                    SVProgressHUD.showInfo(withStatus: message)
                     break
                 }
         }
