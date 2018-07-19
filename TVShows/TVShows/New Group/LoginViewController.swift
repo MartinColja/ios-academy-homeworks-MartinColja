@@ -1,15 +1,8 @@
-//
-//  LoginViewController.swift
-//  TVShows
-//
-//  Created by Infinum Student Academy on 13/07/2018.
-//  Copyright © 2018 Sifon.co. All rights reserved.
-//
-
 import UIKit
 import SVProgressHUD
 import Alamofire
 import CodableAlamofire
+import PromiseKit
 
 class LoginViewController: UIViewController {
     
@@ -25,21 +18,13 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    //happens on "log in" button click
     @IBAction func loginButtonPressed(_ sender: Any) {
         _loginUserWith(email: emailTextField.text!, password: passwordTextField.text!)
-        
     }
     
-    func pushHomeView() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        
-        let homeViewController =
-            storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-        
-        navigationController?.pushViewController(homeViewController, animated:
-            true)
-    }
-    
+    //happens on "create account" button click
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         
         if !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
@@ -48,6 +33,7 @@ class LoginViewController: UIViewController {
         
     }
     
+    //communicates with register user api
     private func _registerUserWith(email: String, password: String) {
         SVProgressHUD.show()
         
@@ -70,12 +56,15 @@ class LoginViewController: UIViewController {
                 case .success(let user):
                     self!._user = user
                     self!._loginUserWith(email: email, password: password)
+                    break
                 case .failure(let error):
                     print("API failure: \(error)")
+                    break
                 }
         }
     }
     
+    //communicates with register user api
     private func _loginUserWith(email: String, password: String) {
         SVProgressHUD.show()
         
@@ -97,13 +86,28 @@ class LoginViewController: UIViewController {
                 switch dataResponse.result {
                 case .success(let loginUser):
                     self!._loginUser = loginUser
-                    self!.pushHomeView()
+                    self!._pushHomeView()
+                    break
                 case .failure(let error):
                     print("API failure: \(error)")
+                    break
                 }
         }
     }
     
+    //connects this controller to HomeViewController
+    private func _pushHomeView() {
+        
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        
+        let homeViewController =
+            storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        
+        navigationController?.pushViewController(homeViewController, animated:
+            true)
+    }
+    
+    //happens on "remember me" button click
     @IBAction func checkboxButtonToggle(_ sender: Any) {
         
         rememberME = !rememberME
@@ -116,25 +120,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
         
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
