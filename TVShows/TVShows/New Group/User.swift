@@ -23,3 +23,15 @@ struct User: Codable { /* typealias Codable = Encodable & Decodable */
 struct LoginUser: Codable {
     let token: String
 }
+
+struct Show: Codable {
+    let id: String
+    let title: String
+    let likesCount: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case title
+        case likesCount
+    }
+}

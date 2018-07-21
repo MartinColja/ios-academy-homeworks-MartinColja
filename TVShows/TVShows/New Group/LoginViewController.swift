@@ -2,15 +2,14 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import CodableAlamofire
-import PromiseKit
 
 class LoginViewController: UIViewController {
     
     private var rememberME: Bool = false
     
-    private var _user: User? = nil
+    private var _user: User?
     
-    private var _loginUser: LoginUser? = nil
+    private var _loginUser: LoginUser?
 
     @IBOutlet weak var checkboxButton: UIButton!
     
@@ -54,30 +53,11 @@ class LoginViewController: UIViewController {
                 
                 switch dataResponse.result {
                 case .success(let user):
-                    self!._user = user
-                    self!._loginUserWith(email: email, password: password)
+                    self?._user = user
+                    self?._loginUserWith(email: email, password: password)
                     break
                 case .failure(let error):
-                    
-                    
-                    let message : String
-                    if let httpStatusCode = dataResponse.response?.statusCode {
-                        switch(httpStatusCode) {
-                        case 400:
-                            message = "Correct email or password not provided."
-                        case 401:
-                            message = "Incorrect email or password."
-                        case 422:
-                            message = "Correct email or password not provided."
-                        default:
-                            message = error.localizedDescription
-                        }
-                    } else {
-                        message = error.localizedDescription
-                    }
-                    
-                    print("API failure: \(error.localizedDescription)")
-                    SVProgressHUD.showInfo(withStatus: message)
+                    self?._handleError(withDataResponse: dataResponse, andError: error)
                     break
                 }
         }
@@ -104,31 +84,41 @@ class LoginViewController: UIViewController {
                 
                 switch dataResponse.result {
                 case .success(let loginUser):
-                    self!._loginUser = loginUser
-                    self!._pushHomeView()
+                    self?._loginUser = loginUser
+                    self?._pushHomeView()
                     break
                 case .failure(let error):
-                    let message : String
-                    if let httpStatusCode = dataResponse.response?.statusCode {
-                        switch(httpStatusCode) {
-                        case 400:
-                            message = "Correct email or password not provided."
-                        case 401:
-                            message = "Incorrect email or password."
-                        case 422:
-                            message = "Correct email or password not provided."
-                        default:
-                            message = error.localizedDescription
-                        }
-                    } else {
-                        message = error.localizedDescription
-                    }
-                    
-                    print("API failure: \(error.localizedDescription)")
-                    SVProgressHUD.showInfo(withStatus: message)
+                    self?._handleError(withDataResponse: dataResponse, andError: error)
                     break
                 }
         }
+    }
+    
+    private func _handleError<K> (withDataResponse: DataResponse<K>, andError: Error){
+        let message : String
+        if let httpStatusCode = withDataResponse.response?.statusCode {
+            switch(httpStatusCode) {
+            case 400:
+                message = "Correct email or password not provided."
+            case 401:
+                message = "Incorrect email or password."
+            case 422:
+                message = "Correct email or password not provided."
+            default:
+                message = andError.localizedDescription
+            }
+        } else {
+            message = andError.localizedDescription
+        }
+        
+        
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let action1 = UIAlertAction(title: "OK", style: .default)
+        
+        alertController.addAction(action1)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //connects this controller to HomeViewController
