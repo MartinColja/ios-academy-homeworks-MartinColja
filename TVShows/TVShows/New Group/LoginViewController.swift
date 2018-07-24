@@ -129,11 +129,10 @@ class LoginViewController: UIViewController {
         let homeViewController =
             storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         
-         homeViewController.loginUser = _loginUser
+        homeViewController.loginUser = _loginUser
         
-        
-        navigationController?.pushViewController(homeViewController, animated:
-            true)
+        navigationController?.setViewControllers([homeViewController], animated: true)
+
     }
     
     //happens on "remember me" button click
