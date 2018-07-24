@@ -48,11 +48,12 @@ class HomeViewController: UIViewController {
         }
         
     }
+    
 }
 
 extension HomeViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteAction  = UITableViewRowAction(style: .default, title: "\u{2718}\n Delete") { (rowAction, indexPath) in
 
@@ -62,6 +63,23 @@ extension HomeViewController: UITableViewDelegate {
         }
         return [deleteAction]
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let loginUser = self.loginUser
+        guard let show = self._shows?[indexPath.row] else {
+            return
+        }
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        
+        let showDetailsViewController =
+            storyboard.instantiateViewController(withIdentifier: "ShowDetailsViewController") as! ShowDetailsViewController
+        
+        showDetailsViewController.loginUser = loginUser
+        showDetailsViewController.show = show
+        
+        navigationController?.pushViewController(showDetailsViewController, animated: true)
+    }
+    
 }
 
 extension HomeViewController: UITableViewDataSource {
