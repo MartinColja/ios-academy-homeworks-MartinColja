@@ -127,7 +127,10 @@ class LoginViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         
         let homeViewController =
-            storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+            storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        
+         homeViewController.loginUser = _loginUser
+        
         
         navigationController?.pushViewController(homeViewController, animated:
             true)
