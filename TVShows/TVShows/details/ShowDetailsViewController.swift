@@ -9,10 +9,20 @@ class ShowDetailsViewController: UIViewController {
     private var _showDetails: ShowDetails?
     private var _episodesList: [Episode]?
     
+    @IBAction private func _addEpisodeButtonClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        
+        let addImageViewController =
+            storyboard.instantiateViewController(withIdentifier: "AddImageViewController") as! AddImageViewController
+        
+        navigationController?.pushViewController(addImageViewController, animated: true)
+    }
+    
     @IBAction private func _popViewControllerButton(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
 
     }
+    
     @IBOutlet private weak var _showDetailsTableView: UITableView! {
         didSet {
             _showDetailsTableView.dataSource = self
@@ -22,8 +32,12 @@ class ShowDetailsViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
         _getShowDetails(showId: show!.id)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     //communicates with show details user api

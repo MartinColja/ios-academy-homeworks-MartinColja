@@ -11,6 +11,7 @@
 		5C1BE46920F935F800E29CA0 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1BE46820F935F800E29CA0 /* Login.storyboard */; };
 		5C1BE46B20F9360800E29CA0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1BE46A20F9360800E29CA0 /* LoginViewController.swift */; };
 		5C418D9D20FE91170005E723 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C418D9C20FE91170005E723 /* HomeViewController.swift */; };
+		5C8411782109F4870015FE33 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8411772109F4870015FE33 /* AddImageViewController.swift */; };
 		5C89C26C20EE6F4400A49751 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C26B20EE6F4400A49751 /* AppDelegate.swift */; };
 		5C89C27620EE6F4500A49751 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C89C27420EE6F4500A49751 /* LaunchScreen.storyboard */; };
 		5C89C28120EE6F4500A49751 /* TVShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C28020EE6F4500A49751 /* TVShowsTests.swift */; };
@@ -50,6 +51,7 @@
 		5C1BE46820F935F800E29CA0 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5C1BE46A20F9360800E29CA0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5C418D9C20FE91170005E723 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5C8411772109F4870015FE33 /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
 		5C89C26820EE6F4400A49751 /* TVShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C89C26B20EE6F4400A49751 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C89C27520EE6F4500A49751 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				5C9A0CD72107337B0085BF91 /* EpisodeTableViewCell.swift */,
 				5C9A0CD92108D7AD0085BF91 /* ShowDetails.swift */,
 				5CAD7A2121095C0A00F49FF6 /* ShowImageTableViewCell.swift */,
+				5C8411772109F4870015FE33 /* AddImageViewController.swift */,
 			);
 			path = details;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				5CB9F63A2106883E00839CC0 /* TVShowTableViewCell.swift in Sources */,
 				5C9A0CDA2108D7AD0085BF91 /* ShowDetails.swift in Sources */,
 				5C89C26C20EE6F4400A49751 /* AppDelegate.swift in Sources */,
+				5C8411782109F4870015FE33 /* AddImageViewController.swift in Sources */,
 				5CAD7A2221095C0A00F49FF6 /* ShowImageTableViewCell.swift in Sources */,
 				5C9A0CCF21071F460085BF91 /* ShowDetailsViewController.swift in Sources */,
 				5C418D9D20FE91170005E723 /* HomeViewController.swift in Sources */,
