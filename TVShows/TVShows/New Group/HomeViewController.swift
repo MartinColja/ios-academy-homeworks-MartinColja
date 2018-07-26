@@ -77,7 +77,7 @@ extension HomeViewController: UITableViewDelegate {
         showDetailsViewController.loginUser = loginUser
         showDetailsViewController.show = show
         
-        navigationController?.setViewControllers([showDetailsViewController], animated: true)
+        navigationController?.pushViewController(showDetailsViewController, animated: true)
     }
     
 }

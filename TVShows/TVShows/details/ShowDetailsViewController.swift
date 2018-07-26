@@ -10,25 +10,19 @@ class ShowDetailsViewController: UIViewController {
     private var _episodesList: [Episode]?
     
     @IBAction private func _popViewControllerButton(_ sender: Any) {
-        _ = self.navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
+
     }
     @IBOutlet private weak var _showDetailsTableView: UITableView! {
         didSet {
             _showDetailsTableView.dataSource = self
             _showDetailsTableView.delegate = self
-            _showDetailsTableView.estimatedRowHeight = 80
+            _showDetailsTableView.estimatedRowHeight = 44
         }
     }
 
     override func viewDidLoad() {
-        let backImage = UIImage(named: "ic-navigate-back")
-        
-        self.navigationController?.navigationBar.backIndicatorImage = backImage
-        
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
-        
-        /*** If needed Assign Title Here ***/
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         _getShowDetails(showId: show!.id)
     }
     
@@ -104,9 +98,6 @@ class ShowDetailsViewController: UIViewController {
         }
     }
 }
-
-
-
 
 
 extension ShowDetailsViewController: UITableViewDelegate {  }
