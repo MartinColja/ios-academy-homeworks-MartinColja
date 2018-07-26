@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
         didSet {
             _TVShowTableView.dataSource = self
             _TVShowTableView.delegate = self
-            _TVShowTableView.estimatedRowHeight = 100
+            _TVShowTableView.estimatedRowHeight = 44
         }
     }
     
@@ -77,7 +77,7 @@ extension HomeViewController: UITableViewDelegate {
         showDetailsViewController.loginUser = loginUser
         showDetailsViewController.show = show
         
-        navigationController?.pushViewController(showDetailsViewController, animated: true)
+        navigationController?.setViewControllers([showDetailsViewController], animated: true)
     }
     
 }

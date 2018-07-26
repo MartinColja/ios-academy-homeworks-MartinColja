@@ -1,24 +1,18 @@
-//
-//  EpisodeTableViewCell.swift
-//  TVShows
-//
-//  Created by Infinum Student Academy on 24/07/2018.
-//  Copyright © 2018 Sifon.co. All rights reserved.
-//
-
 import UIKit
 
 class EpisodeTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet private weak var _tvShowEpisodeNumberLabel: UILabel!
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var _tvShowEpisodeTitleLabel: UILabel!
+    
+    
+    func configure(with episodeTitle: String, for season: Int, and episodeNumber: Int){
+        
+        _tvShowEpisodeTitleLabel.text = episodeTitle  == "" ? "Title not available" : episodeTitle
+        _tvShowEpisodeNumberLabel.text = "S\(season) Ep\(episodeNumber)"
     }
+    
+    
 
 }

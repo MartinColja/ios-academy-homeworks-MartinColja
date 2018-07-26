@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic-logout.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "image-not-available.png",
       "scale" : "2x"
     },
     {
