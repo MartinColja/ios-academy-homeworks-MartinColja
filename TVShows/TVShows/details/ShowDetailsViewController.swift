@@ -1,6 +1,7 @@
 import UIKit
 import SVProgressHUD
 import Alamofire
+import CodableAlamofire
 
 class ShowDetailsViewController: UIViewController {
 
@@ -13,9 +14,16 @@ class ShowDetailsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         
         let addImageViewController =
-            storyboard.instantiateViewController(withIdentifier: "AddImageViewController") as! AddImageViewController
+            storyboard.instantiateViewController(withIdentifier: "AddEpisodeViewController") as! AddEpisodeViewController
         
-        navigationController?.pushViewController(addImageViewController, animated: true)
+        addImageViewController.addEpisodeDelegate = self
+        addImageViewController.showDetails = self._showDetails
+        addImageViewController.loginUser = self.loginUser
+        
+        let navigationController = UINavigationController.init(rootViewController:
+            addImageViewController)
+        
+        present(navigationController, animated: true, completion: nil)
     }
     
     @IBAction private func _popViewControllerButton(_ sender: Any) {
@@ -32,11 +40,12 @@ class ShowDetailsViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         _getShowDetails(showId: show!.id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -112,7 +121,13 @@ class ShowDetailsViewController: UIViewController {
         }
     }
 }
-
+extension ShowDetailsViewController: AddEpisodeDelegate {
+    func shouldReloadView() {
+        self._getShowEpisodes(showId: show!.id)
+        self._showDetailsTableView.reloadData()
+    }
+    
+}
 
 extension ShowDetailsViewController: UITableViewDelegate {  }
 
@@ -156,14 +171,11 @@ extension ShowDetailsViewController: UITableViewDataSource {
         default:
             let episodeCell = _showDetailsTableView.dequeueReusableCell(withIdentifier: "EpisodeTableViewCell", for: indexPath) as! EpisodeTableViewCell
             
-            //ak sam dobro skuzio tu ide jos jedan alamofire call ukumponiram ga kasnije za sad mock data
-            //TODO alamofire call
-            
             if let episodesList = self._episodesList {
                 let index = indexPath.row - 2
-                let episodeNumber = episodesList.count - index
+                let episodeNumber = episodesList[index].episodeNumber
                 let episodeTitle = episodesList[index].title
-                let season = 0
+                let season = episodesList[index].season
                 episodeCell.configure(with: episodeTitle, for: season, and: episodeNumber)
                 return episodeCell
             }

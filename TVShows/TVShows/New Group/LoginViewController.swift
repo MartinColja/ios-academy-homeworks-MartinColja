@@ -86,6 +86,7 @@ class LoginViewController: UIViewController {
                 case .success(let loginUser):
                     self?._loginUser = loginUser
                     self?._pushHomeView()
+                    dump(loginUser)
                     break
                 case .failure(let error):
                     self?._handleError(withDataResponse: dataResponse, andError: error)

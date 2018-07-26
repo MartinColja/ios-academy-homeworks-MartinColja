@@ -255,7 +255,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxS-W5-DMi">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-not-available" translatesAutoresizingMaskIntoConstraints="NO" id="iiV-pW-0jc">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-not-available" translatesAutoresizingMaskIntoConstraints="NO" id="iiV-pW-0jc">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGF-eq-llt">
@@ -366,7 +366,7 @@
                                                     <rect key="frame" x="380" y="10.000000000000002" width="24" height="23.666666666666671"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Episode title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="480-GV-OCf">
-                                                    <rect key="frame" x="110" y="10.000000000000002" width="270" height="23.666666666666671"/>
+                                                    <rect key="frame" x="130" y="10.000000000000002" width="250" height="23.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -376,7 +376,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="0Tn-sJ-tvA" secondAttribute="trailing" constant="10" id="0Vt-uM-ngd"/>
                                                 <constraint firstAttribute="bottom" secondItem="0Tn-sJ-tvA" secondAttribute="bottom" constant="10" id="4FA-vJ-8tZ"/>
                                                 <constraint firstItem="0Tn-sJ-tvA" firstAttribute="top" secondItem="G9Z-9n-nbg" secondAttribute="top" constant="10" id="4Fh-l4-nFO"/>
-                                                <constraint firstItem="480-GV-OCf" firstAttribute="leading" secondItem="odP-TK-oR2" secondAttribute="leading" constant="100" id="9ZH-yA-9PT"/>
+                                                <constraint firstItem="480-GV-OCf" firstAttribute="leading" secondItem="odP-TK-oR2" secondAttribute="leading" constant="120" id="9ZH-yA-9PT"/>
                                                 <constraint firstItem="0Tn-sJ-tvA" firstAttribute="leading" secondItem="480-GV-OCf" secondAttribute="trailing" id="NtC-JE-Ufl"/>
                                                 <constraint firstAttribute="bottom" secondItem="480-GV-OCf" secondAttribute="bottom" constant="10" id="S6W-VZ-RKJ"/>
                                                 <constraint firstItem="480-GV-OCf" firstAttribute="top" secondItem="G9Z-9n-nbg" secondAttribute="top" constant="10" id="WA4-KH-WYx"/>
@@ -440,10 +440,10 @@
             </objects>
             <point key="canvasLocation" x="288.75" y="-57.04225352112676"/>
         </scene>
-        <!--Add Image View Controller-->
+        <!--Add episode-->
         <scene sceneID="TX9-b0-rQU">
             <objects>
-                <viewController storyboardIdentifier="AddImageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qC8-Ky-odv" customClass="AddImageViewController" customModule="TVShows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddEpisodeViewController" title="Add episode" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qC8-Ky-odv" customClass="AddEpisodeViewController" customModule="TVShows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rbb-Sh-6gH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -500,7 +500,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="36"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frS-Iz-zNa">
                                                                         <rect key="frame" x="0.0" y="46" width="394" height="1.3333333333333357"/>
@@ -518,7 +518,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="36"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM8-xO-ukQ">
                                                                         <rect key="frame" x="0.0" y="46" width="394" height="1.3333333333333357"/>
@@ -536,7 +536,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="36"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSG-s5-72w">
                                                                         <rect key="frame" x="0.0" y="46.000000000000057" width="394" height="1.3333333333333357"/>
@@ -580,6 +580,12 @@
                         <viewLayoutGuide key="safeArea" id="3wb-RW-LzA"/>
                     </view>
                     <navigationItem key="navigationItem" id="HuA-Gw-P8E"/>
+                    <connections>
+                        <outlet property="_episodeDescriptionTextField" destination="Wed-3o-E70" id="bRB-be-9De"/>
+                        <outlet property="_episodeNumberTextField" destination="ByP-29-hwU" id="Jyf-gJ-OTP"/>
+                        <outlet property="_episodeTitleTextField" destination="Goo-zz-UXJ" id="0gt-L3-yXm"/>
+                        <outlet property="_seasonNumberTextField" destination="Jya-6H-nS8" id="UXW-V4-ffz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hjy-ip-idX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
