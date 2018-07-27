@@ -64,6 +64,10 @@ extension HomeViewController: UITableViewDelegate {
         return [deleteAction]
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let loginUser = self.loginUser
         guard let show = self._shows?[indexPath.row] else {
@@ -101,9 +105,6 @@ extension HomeViewController: UITableViewDataSource {
         
         if let showList = self._shows {
             let item = showList[indexPath.row]
-            cell.configure(with: item)
-        } else {
-            let item = Show(id: "empty", title: "empty 😕", likesCount: 0)
             cell.configure(with: item)
         }
         

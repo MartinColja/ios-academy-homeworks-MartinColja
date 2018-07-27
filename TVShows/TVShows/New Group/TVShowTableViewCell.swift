@@ -1,28 +1,22 @@
-//
-//  TVShowTableViewCell.swift
-//  TVShows
-//
-//  Created by Infinum Student Academy on 24/07/2018.
-//  Copyright © 2018 Sifon.co. All rights reserved.
-//
-
 import UIKit
+import Kingfisher
 
 class TVShowTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var _TVShowTitleLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
+    @IBOutlet private weak var _tvShowImageView: UIImageView!
     
     func configure(with item: Show){
         _TVShowTitleLabel.text = item.title
+        let url = URL(string: "https://api.infinum.academy" + item.imageUrl)
+        _tvShowImageView.kf.setImage(with: url)
+    }
+    
+    override func awakeFromNib() {
+        _tvShowImageView.layer.shadowOpacity = 1.5
+        _tvShowImageView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        _tvShowImageView.layer.shadowRadius = 8.0
+        _tvShowImageView.layer.shadowColor = UIColor.black.cgColor
     }
 
 }

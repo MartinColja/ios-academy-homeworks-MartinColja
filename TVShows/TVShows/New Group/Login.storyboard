@@ -6,7 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -196,22 +196,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1R-NP-8yt">
-                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="image-not-available" translatesAutoresizingMaskIntoConstraints="NO" id="kJD-CI-Cli">
+                                                    <rect key="frame" x="10" y="5" width="96" height="34"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1R-NP-8yt">
+                                                    <rect key="frame" x="126" y="9.9999999999999982" width="288" height="26.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="W1R-NP-8yt" secondAttribute="bottom" id="cP6-L5-c5B"/>
-                                                <constraint firstItem="W1R-NP-8yt" firstAttribute="top" secondItem="RAg-iP-ZOo" secondAttribute="topMargin" id="d6b-7p-vma"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="W1R-NP-8yt" secondAttribute="trailing" id="p7S-E9-kN6"/>
-                                                <constraint firstItem="W1R-NP-8yt" firstAttribute="leading" secondItem="RAg-iP-ZOo" secondAttribute="leadingMargin" id="uf0-Da-akS"/>
+                                                <constraint firstAttribute="bottom" secondItem="kJD-CI-Cli" secondAttribute="bottom" constant="5" id="17S-dV-nWu"/>
+                                                <constraint firstItem="kJD-CI-Cli" firstAttribute="top" secondItem="RAg-iP-ZOo" secondAttribute="top" constant="5" id="MHY-bX-HuW"/>
+                                                <constraint firstAttribute="trailing" secondItem="W1R-NP-8yt" secondAttribute="trailing" id="Rl8-7N-e1C"/>
+                                                <constraint firstItem="W1R-NP-8yt" firstAttribute="leading" secondItem="kJD-CI-Cli" secondAttribute="trailing" constant="20" id="at8-4H-QPb"/>
+                                                <constraint firstItem="kJD-CI-Cli" firstAttribute="leading" secondItem="RAg-iP-ZOo" secondAttribute="leading" constant="10" id="cAL-YV-ZbZ"/>
+                                                <constraint firstItem="W1R-NP-8yt" firstAttribute="width" secondItem="kJD-CI-Cli" secondAttribute="width" multiplier="3" id="p9v-AX-3um"/>
+                                                <constraint firstItem="W1R-NP-8yt" firstAttribute="top" secondItem="RAg-iP-ZOo" secondAttribute="top" constant="10" id="qyV-Kf-qIy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="_TVShowTitleLabel" destination="W1R-NP-8yt" id="V2D-6j-XoN"/>
+                                            <outlet property="_tvShowImageView" destination="kJD-CI-Cli" id="0bH-4P-VL6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -232,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0pD-8J-cf8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2025" y="-57.04225352112676"/>
+            <point key="canvasLocation" x="2024.6376811594205" y="-57.065217391304351"/>
         </scene>
         <!--Show Details View Controller-->
         <scene sceneID="Yph-de-hfM">
