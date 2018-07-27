@@ -12,6 +12,8 @@ target 'TVShows' do
   pod 'SVProgressHUD', '~> 2.2'
   pod 'PromiseKit/CorePromise', '~> 6.0'
   pod 'PromiseKit/Alamofire'
+  pod 'UIView+Shake', '~> 1.4'
+
 
 
   target 'TVShowsTests' do

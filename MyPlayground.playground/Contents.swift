@@ -1,13 +1,11 @@
-//: Playground - noun: a place where people can play
-
 import Cocoa
 
-protocol test {
-    
-    func myFunc(str: String)->Void
-    
+let numbers = [1,2,3]
+let strings = ["A","B","C"]
+
+let joinedArr = zip(numbers, strings)
+let unzippedArr = joinedArr.map{ tuple ->String in
+    return "\(tuple.0)\(tuple.1)"
 }
 
-class test {
-
-
+dump(unzippedArr)

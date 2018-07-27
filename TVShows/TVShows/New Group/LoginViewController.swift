@@ -2,6 +2,7 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import CodableAlamofire
+import UIView_Shake
 
 class LoginViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet private var _outerView: UIView!
     
     //happens on "log in" button click
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -89,7 +91,7 @@ class LoginViewController: UIViewController {
                     dump(loginUser)
                     break
                 case .failure(let error):
-                    self?._handleError(withDataResponse: dataResponse, andError: error)
+                    self?._handleError(withDataResponse: dataResponse, andError: error)                    
                     break
                 }
         }
@@ -118,8 +120,9 @@ class LoginViewController: UIViewController {
         let action1 = UIAlertAction(title: "OK", style: .default)
         
         alertController.addAction(action1)
-        
-        self.present(alertController, animated: true, completion: nil)
+        self._outerView.shake(8, withDelta: 4, speed: 0.03, shakeDirection: .rotation){[weak self] in
+            self?.present(alertController, animated: true, completion: nil)
+        }
     }
     
     //connects this controller to HomeViewController
