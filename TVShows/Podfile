@@ -13,8 +13,7 @@ target 'TVShows' do
   pod 'PromiseKit/CorePromise', '~> 6.0'
   pod 'PromiseKit/Alamofire'
   pod 'UIView+Shake', '~> 1.4'
-
-
+  pod 'Kingfisher', '~> 4.8'
 
   target 'TVShowsTests' do
     inherit! :search_paths

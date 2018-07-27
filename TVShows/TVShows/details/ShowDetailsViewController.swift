@@ -35,7 +35,7 @@ class ShowDetailsViewController: UIViewController {
         didSet {
             _showDetailsTableView.dataSource = self
             _showDetailsTableView.delegate = self
-            _showDetailsTableView.estimatedRowHeight = 44
+            _showDetailsTableView.estimatedRowHeight = 10
         }
     }
 
@@ -139,6 +139,14 @@ extension ShowDetailsViewController: UITableViewDataSource {
         }
         return episodesList.count + 2 // za sliku i opis
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row{
+        case 0: return 250
+        case 1: return 150
+        default: return 50
+        }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -149,10 +157,8 @@ extension ShowDetailsViewController: UITableViewDataSource {
             let imageCell = _showDetailsTableView.dequeueReusableCell(withIdentifier: "ShowImageTableViewCell", for: indexPath) as! ShowImageTableViewCell
             
             if let showDetails = self._showDetails {
-                imageCell.configure(imageUrl: showDetails.imageUrl, showId: showDetails.id)
+                imageCell.configure(imageUrl: showDetails.imageUrl)
             }
-            
-            imageCell.configure(imageUrl: "", showId: "")
             return imageCell
             
         case 1:
