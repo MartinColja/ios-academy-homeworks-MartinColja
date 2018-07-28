@@ -180,7 +180,7 @@
         <!--Shows-->
         <scene sceneID="0GM-zl-1Bw">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" title="Shows" id="NEH-Ez-GSC" customClass="HomeViewController" customModule="TVShows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListViewController" title="Shows" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NEH-Ez-GSC" customClass="ListViewController" customModule="TVShows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dNt-Zr-0tF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,6 +240,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0pD-8J-cf8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2024.6376811594205" y="-57.065217391304351"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="60b-AO-jrg">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Iha-xS-dmp" customClass="HomeViewController" customModule="TVShows" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JTd-Ei-Jas">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQz-0f-2hc">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rQz-0f-2hc" firstAttribute="top" secondItem="roe-0I-wrs" secondAttribute="top" id="0Xf-kf-dxQ"/>
+                            <constraint firstItem="roe-0I-wrs" firstAttribute="bottom" secondItem="rQz-0f-2hc" secondAttribute="bottom" id="Pjj-M5-k5F"/>
+                            <constraint firstItem="rQz-0f-2hc" firstAttribute="leading" secondItem="roe-0I-wrs" secondAttribute="leading" id="ZAR-kM-Qli"/>
+                            <constraint firstItem="roe-0I-wrs" firstAttribute="trailing" secondItem="rQz-0f-2hc" secondAttribute="trailing" id="hwQ-9b-Ejx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="roe-0I-wrs"/>
+                    </view>
+                    <connections>
+                        <outlet property="_childViewController" destination="rQz-0f-2hc" id="F5W-I3-VJd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBh-wR-aub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1586" y="739"/>
         </scene>
         <!--Show Details View Controller-->
         <scene sceneID="Yph-de-hfM">

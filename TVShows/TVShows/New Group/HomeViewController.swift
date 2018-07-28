@@ -10,17 +10,14 @@ class HomeViewController: UIViewController {
     
     var loginUser: LoginUser?
     
-    @IBOutlet private weak var _TVShowTableView: UITableView! {
-        didSet {
-            _TVShowTableView.dataSource = self
-            _TVShowTableView.delegate = self
-            _TVShowTableView.estimatedRowHeight = 44
-        }
-    }
+    var listViewController: ListViewController?
+    var gridViewController: UIViewController?
     
+    @IBOutlet private weak var _childViewController: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        _setViewControllers()
         _getShowsApiCall()
         _configViewController()
     }
@@ -28,6 +25,12 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func _setViewControllers() -> () {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        self.listViewController =
+            (storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController)
     }
     
     private func _configViewController() -> () {
@@ -76,76 +79,19 @@ class HomeViewController: UIViewController {
                 switch dataResponse.result {
                 case .success(let show):
                     self?._shows = show
-                    self?._TVShowTableView.reloadData()
+                    self?._pushChildViewController()
                 case .failure(let error):
                     print("Api error: \(error).")
                 }
-                
         }
+    }
+    
+    private func _pushChildViewController() -> () {
+        addChildViewController(self.listViewController!)
+        _childViewController.addSubview((listViewController?.view)!)
+        listViewController?.shows = self._shows
+        listViewController?.loginUser = self.loginUser
+        listViewController?.didMove(toParentViewController: self)
     }
     
 }
-
-extension HomeViewController: UITableViewDelegate {
-    
-     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        let deleteAction  = UITableViewRowAction(style: .default, title: "\u{2718}\n Delete") { (rowAction, indexPath) in
-
-            self._shows?.remove(at: indexPath.row)
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-        return [deleteAction]
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let loginUser = self.loginUser
-        guard let show = self._shows?[indexPath.row] else {
-            return
-        }
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        
-        let showDetailsViewController =
-            storyboard.instantiateViewController(withIdentifier: "ShowDetailsViewController") as! ShowDetailsViewController
-        
-        showDetailsViewController.loginUser = loginUser
-        showDetailsViewController.show = show
-        
-        navigationController?.pushViewController(showDetailsViewController, animated: true)
-    }
-    
-}
-
-extension HomeViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let showList = self._shows else {
-            return 1 //jer planiram stavit label empty ak alamofire nije uspio pa je referenca nula ili neki drugi slucaj di se to dogadja ak postoji
-        }
-        return showList.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = _TVShowTableView.dequeueReusableCell(withIdentifier: "TVShowTableViewCell", for: indexPath) as! TVShowTableViewCell
-        
-        if let showList = self._shows {
-            let item = showList[indexPath.row]
-            cell.configure(with: item)
-        }
-        
-        return cell
-    }
-    
-    
-}
-
