@@ -22,12 +22,17 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return _createDeleteAction(tableView, editActionsForRowAt: indexPath)
         
+    }
+    
+    private func _createDeleteAction(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction  = UITableViewRowAction(style: .default, title: "\u{2718}\n Delete") { (rowAction, indexPath) in
             
             self.shows?.remove(at: indexPath.row)
-            
+            tableView.deselectRow(at: indexPath, animated: true)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         }
         return [deleteAction]
     }

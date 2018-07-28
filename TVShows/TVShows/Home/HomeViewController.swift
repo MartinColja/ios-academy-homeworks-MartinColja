@@ -6,16 +6,15 @@ import CodableAlamofire
 
 class HomeViewController: UIViewController {
     
-    private var _shows: [Show]?
-    
     var loginUser: LoginUser?
-    
     var listViewController: ListViewController?
     var gridViewController: GridViewController?
     
-    private var _listViewActive = true
-    
     @IBOutlet private weak var _childViewController: UIView!
+
+    private var _listViewActive = true
+    private var _shows: [Show]?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +107,6 @@ class HomeViewController: UIViewController {
         gridViewController?.didMove(toParentViewController: self)
     }
     
-    
     @objc private func _logoutActionHandler() {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         
@@ -143,19 +141,11 @@ class HomeViewController: UIViewController {
                 switch dataResponse.result {
                 case .success(let show):
                     self?._shows = show
-                    self?._pushChildViewController()
+                    self?._pushListViewController()
                 case .failure(let error):
                     print("Api error: \(error).")
                 }
         }
-    }
-    
-    private func _pushChildViewController() -> () {
-        addChildViewController(self.listViewController!)
-        _childViewController.addSubview((listViewController?.view)!)
-        listViewController?.shows = self._shows
-        listViewController?.loginUser = self.loginUser
-        listViewController?.didMove(toParentViewController: self)
     }
     
 }

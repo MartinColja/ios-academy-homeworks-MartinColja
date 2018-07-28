@@ -6,40 +6,20 @@ import UIView_Shake
 import Locksmith
 
 class LoginViewController: UIViewController {
-    
-    private var _rememberME: Bool = false
-    
-    private var _user: User?
-    
-    private var _loginUser: LoginUser?
-    
-    private var _defaults = UserDefaults.standard
 
     @IBOutlet weak var checkboxButton: UIButton!
-    
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet private var _outerView: UIView!
+    
+    private var _rememberME: Bool = false
+    private var _user: User?
+    private var _loginUser: LoginUser?
+    private var _defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         _loginUserFromMemory()
-    }
-    
-    private func _loginUserFromMemory() -> () {
-        let rememberMe = _defaults.bool(forKey: "remember-me")
-        if rememberMe {
-            guard let email = _defaults.string(forKey: "last-user") else {
-                print("nema saveanog mejla")
-                return
-            }
-            let dictionary = Locksmith.loadDataForUserAccount(userAccount: email)
-            let password = dictionary!["password"] as! String
-            _loginUserWith(email: email, password: password, fromMemory: true)
-        }
-        
     }
     
     //happens on "log in" button click
@@ -52,6 +32,28 @@ class LoginViewController: UIViewController {
         
         if !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
             _registerUserWith(email: emailTextField.text!, password: passwordTextField.text!)
+        }
+    }
+    
+    //happens on "remember me" button click
+    @IBAction func checkboxButtonToggle(_ sender: Any) {
+        
+        _rememberME = !_rememberME
+        let imageName = _rememberME == true ? "ic-checkbox-filled" : "ic-checkbox-empty"
+        checkboxButton.setImage(UIImage(named: imageName), for: .normal)
+        
+    }
+    
+    private func _loginUserFromMemory() -> () {
+        let rememberMe = _defaults.bool(forKey: "remember-me")
+        if rememberMe {
+            guard let email = _defaults.string(forKey: "last-user") else {
+                print("nema saveanog mejla")
+                return
+            }
+            let dictionary = Locksmith.loadDataForUserAccount(userAccount: email)
+            let password = dictionary!["password"] as! String
+            _loginUserWith(email: email, password: password, fromMemory: true)
         }
     }
     
@@ -133,7 +135,6 @@ class LoginViewController: UIViewController {
             print("imas neki error u catch bloku") //pretpostavljam duplić
             print(error)
         }
-        
     }
     
     private func _handleError<K> (withDataResponse: DataResponse<K>, andError: Error){
@@ -152,7 +153,6 @@ class LoginViewController: UIViewController {
         } else {
             message = andError.localizedDescription
         }
-        
         
         let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
         
@@ -175,15 +175,5 @@ class LoginViewController: UIViewController {
         homeViewController.loginUser = _loginUser
         
         navigationController?.setViewControllers([homeViewController], animated: true)
-
-    }
-    
-    //happens on "remember me" button click
-    @IBAction func checkboxButtonToggle(_ sender: Any) {
-        
-        _rememberME = !_rememberME
-        let imageName = _rememberME == true ? "ic-checkbox-filled" : "ic-checkbox-empty"
-        checkboxButton.setImage(UIImage(named: imageName), for: .normal)
-        
     }
 }
