@@ -241,6 +241,66 @@
             </objects>
             <point key="canvasLocation" x="2024.6376811594205" y="-57.065217391304351"/>
         </scene>
+        <!--Grid View Controller-->
+        <scene sceneID="2uU-IV-mU2">
+            <objects>
+                <viewController storyboardIdentifier="GridViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aHX-8S-MaT" customClass="GridViewController" customModule="TVShows" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="keb-y7-ZrY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="372-oi-NYr">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ihA-ey-WuW">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="40" minY="20" maxX="40" maxY="20"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="GridCollectionViewCell" reuseIdentifier="GridCollectionViewCell" id="Rh8-hn-Vgp" customClass="GridCollectionViewCell" customModule="TVShows" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="20" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iK2-wB-I3e">
+                                                    <rect key="frame" x="0.0" y="5" width="50" height="40"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="iK2-wB-I3e" secondAttribute="trailing" id="7BM-5p-gds"/>
+                                            <constraint firstItem="iK2-wB-I3e" firstAttribute="leading" secondItem="Rh8-hn-Vgp" secondAttribute="leading" id="TkJ-fF-n44"/>
+                                            <constraint firstAttribute="bottom" secondItem="iK2-wB-I3e" secondAttribute="bottom" constant="5" id="aq0-iv-0Z4"/>
+                                            <constraint firstItem="iK2-wB-I3e" firstAttribute="top" secondItem="Rh8-hn-Vgp" secondAttribute="top" constant="5" id="tam-RB-gSk"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="_tvShowImageView" destination="iK2-wB-I3e" id="YLq-Vc-Rmj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CN9-as-5Bf" firstAttribute="bottom" secondItem="372-oi-NYr" secondAttribute="bottom" id="Jyv-MP-qYq"/>
+                            <constraint firstItem="CN9-as-5Bf" firstAttribute="trailing" secondItem="372-oi-NYr" secondAttribute="trailing" id="VAz-31-zHE"/>
+                            <constraint firstItem="372-oi-NYr" firstAttribute="leading" secondItem="CN9-as-5Bf" secondAttribute="leading" id="lzc-PC-6yT"/>
+                            <constraint firstItem="372-oi-NYr" firstAttribute="top" secondItem="CN9-as-5Bf" secondAttribute="top" id="xXj-pi-tfu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CN9-as-5Bf"/>
+                    </view>
+                    <connections>
+                        <outlet property="_showsCollectionView" destination="372-oi-NYr" id="WWA-nK-ghP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kiq-Xg-N8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="751"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="60b-AO-jrg">
             <objects>

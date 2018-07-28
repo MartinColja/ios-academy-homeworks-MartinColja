@@ -17,6 +17,8 @@
 		5C89C28120EE6F4500A49751 /* TVShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C28020EE6F4500A49751 /* TVShowsTests.swift */; };
 		5C89C28C20EE6F4600A49751 /* TVShowsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89C28B20EE6F4600A49751 /* TVShowsUITests.swift */; };
 		5C8B5B7C210BF61B00906A51 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B5B7B210BF61B00906A51 /* ListViewController.swift */; };
+		5C8B5B80210C94F200906A51 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B5B7E210C94F200906A51 /* GridCollectionViewCell.swift */; };
+		5C8B5B83210C994F00906A51 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B5B82210C994F00906A51 /* GridViewController.swift */; };
 		5C8D08FF20FF693600FEDDB2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D08FE20FF693600FEDDB2 /* User.swift */; };
 		5C9A0CCF21071F460085BF91 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9A0CCE21071F460085BF91 /* ShowDetailsViewController.swift */; };
 		5C9A0CD62107336F0085BF91 /* ShowDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9A0CD52107336F0085BF91 /* ShowDescriptionTableViewCell.swift */; };
@@ -64,6 +66,8 @@
 		5C89C28B20EE6F4600A49751 /* TVShowsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsUITests.swift; sourceTree = "<group>"; };
 		5C89C28D20EE6F4600A49751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C8B5B7B210BF61B00906A51 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		5C8B5B7E210C94F200906A51 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
+		5C8B5B82210C994F00906A51 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		5C8D08FE20FF693600FEDDB2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5C9A0CCE21071F460085BF91 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		5C9A0CD52107336F0085BF91 /* ShowDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDescriptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -185,6 +189,14 @@
 			path = TVShowsUITests;
 			sourceTree = "<group>";
 		};
+		5C8B5B7D210C947500906A51 /* GridCell */ = {
+			isa = PBXGroup;
+			children = (
+				5C8B5B7E210C94F200906A51 /* GridCollectionViewCell.swift */,
+			);
+			path = GridCell;
+			sourceTree = "<group>";
+		};
 		5C9A0CD221071F6D0085BF91 /* details */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,12 +213,14 @@
 		5CC8F39F20F27EA600AAD6B4 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5C8B5B7D210C947500906A51 /* GridCell */,
 				5C1BE46820F935F800E29CA0 /* Login.storyboard */,
 				5C1BE46A20F9360800E29CA0 /* LoginViewController.swift */,
 				5C418D9C20FE91170005E723 /* HomeViewController.swift */,
 				5C8D08FE20FF693600FEDDB2 /* User.swift */,
 				5CB9F6392106883E00839CC0 /* TVShowTableViewCell.swift */,
 				5C8B5B7B210BF61B00906A51 /* ListViewController.swift */,
+				5C8B5B82210C994F00906A51 /* GridViewController.swift */,
 			);
 			name = Login;
 			path = "New Group";
@@ -442,7 +456,9 @@
 				5CB9F63A2106883E00839CC0 /* TVShowTableViewCell.swift in Sources */,
 				5C9A0CDA2108D7AD0085BF91 /* ShowDetails.swift in Sources */,
 				5C89C26C20EE6F4400A49751 /* AppDelegate.swift in Sources */,
+				5C8B5B80210C94F200906A51 /* GridCollectionViewCell.swift in Sources */,
 				5C8411782109F4870015FE33 /* AddEpisodeViewController.swift in Sources */,
+				5C8B5B83210C994F00906A51 /* GridViewController.swift in Sources */,
 				5CAD7A2221095C0A00F49FF6 /* ShowImageTableViewCell.swift in Sources */,
 				5C9A0CCF21071F460085BF91 /* ShowDetailsViewController.swift in Sources */,
 				5C418D9D20FE91170005E723 /* HomeViewController.swift in Sources */,
