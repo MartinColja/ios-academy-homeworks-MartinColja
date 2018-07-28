@@ -18,9 +18,45 @@ class HomeViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        _getShowsApiCall()
+        _configViewController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func _configViewController() -> () {
+        let logoutItem = UIBarButtonItem.init(title: "",
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(_logoutActionHandler))
+        //bez ovog mi se ne pojavljuje slika već samo plavi krug
+        //google kaže neš s alfom i renderanjem
+        logoutItem.image = UIImage(named: "ic-logout")?.withRenderingMode(.alwaysOriginal)
         
+        navigationItem.leftBarButtonItem = logoutItem
+    }
+    
+    @objc private func _logoutActionHandler() {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        
+        let loginViewController =
+            storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        
+        //clears user defaults
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        
+        navigationController?.setViewControllers([loginViewController],animated: true)
+    }
+    
+    private func _getShowsApiCall() ->() {
         guard let token = loginUser?.token else {
             return
         }
@@ -28,7 +64,7 @@ class HomeViewController: UIViewController {
         SVProgressHUD.show()
         let headers = ["Authorization" : token]
         
-        Alamofire    
+        Alamofire
             .request("https://api.infinum.academy/api/shows",
                      method: .get,
                      encoding: JSONEncoding.default,
@@ -46,7 +82,6 @@ class HomeViewController: UIViewController {
                 }
                 
         }
-        
     }
     
 }

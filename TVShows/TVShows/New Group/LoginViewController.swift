@@ -3,14 +3,17 @@ import SVProgressHUD
 import Alamofire
 import CodableAlamofire
 import UIView_Shake
+import Locksmith
 
 class LoginViewController: UIViewController {
     
-    private var rememberME: Bool = false
+    private var _rememberME: Bool = false
     
     private var _user: User?
     
     private var _loginUser: LoginUser?
+    
+    private var _defaults = UserDefaults.standard
 
     @IBOutlet weak var checkboxButton: UIButton!
     
@@ -20,9 +23,28 @@ class LoginViewController: UIViewController {
     
     @IBOutlet private var _outerView: UIView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        _loginUserFromMemory()
+    }
+    
+    private func _loginUserFromMemory() -> () {
+        let rememberMe = _defaults.bool(forKey: "remember-me")
+        if rememberMe {
+            guard let email = _defaults.string(forKey: "last-user") else {
+                print("nema saveanog mejla")
+                return
+            }
+            let dictionary = Locksmith.loadDataForUserAccount(userAccount: email)
+            let password = dictionary!["password"] as! String
+            _loginUserWith(email: email, password: password, fromMemory: true)
+        }
+        
+    }
+    
     //happens on "log in" button click
     @IBAction func loginButtonPressed(_ sender: Any) {
-        _loginUserWith(email: emailTextField.text!, password: passwordTextField.text!)
+        _loginUserWith(email: emailTextField.text!, password: passwordTextField.text!, fromMemory: false)
     }
     
     //happens on "create account" button click
@@ -31,7 +53,6 @@ class LoginViewController: UIViewController {
         if !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty {
             _registerUserWith(email: emailTextField.text!, password: passwordTextField.text!)
         }
-        
     }
     
     //communicates with register user api
@@ -56,7 +77,7 @@ class LoginViewController: UIViewController {
                 switch dataResponse.result {
                 case .success(let user):
                     self?._user = user
-                    self?._loginUserWith(email: email, password: password)
+                    self?._loginUserWith(email: email, password: password, fromMemory: false)
                     break
                 case .failure(let error):
                     self?._handleError(withDataResponse: dataResponse, andError: error)
@@ -66,7 +87,7 @@ class LoginViewController: UIViewController {
     }
     
     //communicates with login user api
-    private func _loginUserWith(email: String, password: String) {
+    private func _loginUserWith(email: String, password: String, fromMemory: Bool) {
         SVProgressHUD.show()
         
         let parameters: [String: String] = [
@@ -88,6 +109,9 @@ class LoginViewController: UIViewController {
                 case .success(let loginUser):
                     self?._loginUser = loginUser
                     self?._pushHomeView()
+                    if !fromMemory {
+                        self?._storeUserSettings()
+                    }
                     dump(loginUser)
                     break
                 case .failure(let error):
@@ -95,6 +119,21 @@ class LoginViewController: UIViewController {
                     break
                 }
         }
+    }
+    
+    private func _storeUserSettings() -> () {
+        let username = emailTextField.text! // ! , pretpostavljam jer znam da je tu
+        let password = passwordTextField.text!
+        _defaults.set(_rememberME, forKey: "remember-me")
+        _defaults.set(username, forKey: "last-user")
+        
+        do{
+            try Locksmith.saveData(data: ["password" : password], forUserAccount: username)
+        } catch(let error) {
+            print("imas neki error u catch bloku") //pretpostavljam duplić
+            print(error)
+        }
+        
     }
     
     private func _handleError<K> (withDataResponse: DataResponse<K>, andError: Error){
@@ -142,19 +181,9 @@ class LoginViewController: UIViewController {
     //happens on "remember me" button click
     @IBAction func checkboxButtonToggle(_ sender: Any) {
         
-        rememberME = !rememberME
-        if ( rememberME ) {
-            checkboxButton.setImage(UIImage(named: "ic-checkbox-filled"), for: .normal)
-        } else {
-            checkboxButton.setImage(UIImage(named: "ic-checkbox-empty"), for: .normal)
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+        _rememberME = !_rememberME
+        let imageName = _rememberME == true ? "ic-checkbox-filled" : "ic-checkbox-empty"
+        checkboxButton.setImage(UIImage(named: imageName), for: .normal)
         
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

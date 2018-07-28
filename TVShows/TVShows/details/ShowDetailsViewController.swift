@@ -142,8 +142,7 @@ extension ShowDetailsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row{
-        case 0: return 250
-        case 1: return 150
+        case 0, 1: return 250
         default: return 50
         }
     }
