@@ -132,7 +132,29 @@ extension ShowDetailsViewController: AddEpisodeDelegate {
     
 }
 
-extension ShowDetailsViewController: UITableViewDelegate {  }
+extension ShowDetailsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        _handleAction(tableView, didSelectRowAt: indexPath)
+    }
+    
+    private func _handleAction(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row > 1 {
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            
+            let episodeDetailsViewController =
+                storyboard.instantiateViewController(withIdentifier: "EpisodeDetailsViewController") as! EpisodeDetailsViewController
+            episodeDetailsViewController.loginUser = self.loginUser
+            let index = indexPath.row - 2
+            guard let episodesList = _episodesList else {
+                return
+            }
+            episodeDetailsViewController.episodeId = episodesList[index].id
+            navigationController?.pushViewController(episodeDetailsViewController, animated: true)
+        }
+    }
+}
 
 extension ShowDetailsViewController: UITableViewDataSource {
 
