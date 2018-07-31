@@ -151,6 +151,9 @@ class CommentsViewController: UIViewController {
         let episodeDetailsViewController =
             storyboard.instantiateViewController(withIdentifier: "EpisodeDetailsViewController") as! EpisodeDetailsViewController
         
+        episodeDetailsViewController.loginUser = self.loginUser
+        episodeDetailsViewController.episodeId = self.episodeDetails?.id
+        
         navigationController?.setViewControllers([episodeDetailsViewController], animated: true)
     }
     

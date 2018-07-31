@@ -19,7 +19,6 @@ class ShowDetailsViewController: UIViewController {
     private var _showDetails: ShowDetails?
     private var _episodesList: [Episode]?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         _getShowDetails(showId: show!.id)

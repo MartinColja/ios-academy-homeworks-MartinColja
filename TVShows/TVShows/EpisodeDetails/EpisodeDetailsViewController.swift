@@ -19,8 +19,9 @@ class EpisodeDetailsViewController: UIViewController {
     var loginUser: LoginUser?
     var episodeId: String?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         _getEpisodeDetailsApiCall()
     }
     
@@ -52,6 +53,7 @@ class EpisodeDetailsViewController: UIViewController {
             "episodeId" : episodeId
         ]
         let headers = ["Authorization" : token]
+        
         
         Alamofire
             .request("https://api.infinum.academy/api/episodes/" + episodeId,
