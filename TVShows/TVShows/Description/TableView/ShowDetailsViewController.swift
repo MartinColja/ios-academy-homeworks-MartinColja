@@ -12,7 +12,7 @@ class ShowDetailsViewController: UIViewController {
         didSet {
             _showDetailsTableView.dataSource = self
             _showDetailsTableView.delegate = self
-            _showDetailsTableView.estimatedRowHeight = 10
+            _showDetailsTableView.estimatedRowHeight = 44
         }
     }
     
@@ -222,7 +222,5 @@ extension ShowDetailsViewController: UITableViewDataSource {
         }
         
     }
-
-
 }
 

@@ -897,6 +897,11 @@
                                                                 <constraint firstAttribute="bottomMargin" secondItem="uUD-sS-WiV" secondAttribute="bottom" id="z8F-yQ-X3J"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="_commentsContentLabel" destination="Z0i-Qp-yVp" id="iPg-la-wzO"/>
+                                                            <outlet property="_profileImageView" destination="IjS-dZ-tbN" id="UXr-EU-S9q"/>
+                                                            <outlet property="_usernameLabel" destination="yCE-Sn-Jqj" id="zHI-ed-Vh3"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -959,6 +964,9 @@
                                                                 <state key="normal" title="Post">
                                                                     <color key="titleColor" red="1" green="0.40392156862745099" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="_addCommentButtonAction:" destination="BGI-Zp-Ufn" eventType="touchUpInside" id="wvH-91-80e"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -1006,6 +1014,8 @@
                     </view>
                     <connections>
                         <outlet property="_commentsScrollView" destination="Buj-wO-out" id="Yci-1o-Prg"/>
+                        <outlet property="_commentsTableView" destination="dFF-Rk-ILO" id="3gI-Xh-Q0i"/>
+                        <outlet property="_newCommentTextField" destination="LNl-sH-0fh" id="tdY-dw-lCB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSs-x1-0GE" userLabel="First Responder" sceneMemberID="firstResponder"/>
