@@ -25,6 +25,14 @@ class EpisodeDetailsViewController: UIViewController {
     }
     
     @IBAction private func _commentsButtonAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        
+        let commentsViewController =
+            storyboard.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        
+        commentsViewController.episodeDetails = _episodeDetails
+        commentsViewController.loginUser = loginUser
+        navigationController?.setViewControllers([commentsViewController], animated: true)
     }
     @IBAction private func _navigateBackButtonAction(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
