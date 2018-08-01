@@ -3,9 +3,7 @@ import UIKit
 class ShowDescriptionTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var _tvShowDescriprionLabel: UILabel!
-    
     @IBOutlet private weak var _tvShowNumberOfEpisodesLabel: UILabel!
-    
     @IBOutlet private weak var _tvShowTitleLabel: UILabel!
     
     func configure(showDescription: String, showTitle: String, numberOfEpisodes: Int) {

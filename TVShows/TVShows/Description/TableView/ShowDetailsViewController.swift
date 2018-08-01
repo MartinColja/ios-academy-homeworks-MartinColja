@@ -7,9 +7,29 @@ class ShowDetailsViewController: UIViewController {
 
     var show: Show?
     var loginUser: LoginUser?
+    
+    @IBOutlet private weak var _showDetailsTableView: UITableView! {
+        didSet {
+            _showDetailsTableView.dataSource = self
+            _showDetailsTableView.delegate = self
+            _showDetailsTableView.estimatedRowHeight = 10
+        }
+    }
+    
     private var _showDetails: ShowDetails?
     private var _episodesList: [Episode]?
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        _getShowDetails(showId: show!.id)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
     @IBAction private func _addEpisodeButtonClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         
@@ -30,24 +50,7 @@ class ShowDetailsViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
 
     }
-    
-    @IBOutlet private weak var _showDetailsTableView: UITableView! {
-        didSet {
-            _showDetailsTableView.dataSource = self
-            _showDetailsTableView.delegate = self
-            _showDetailsTableView.estimatedRowHeight = 44
-        }
-    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        _getShowDetails(showId: show!.id)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
     
     //communicates with show details user api
     private func _getShowDetails(showId: String) {
@@ -139,6 +142,13 @@ extension ShowDetailsViewController: UITableViewDataSource {
         }
         return episodesList.count + 2 // za sliku i opis
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row{
+        case 0, 1: return 250
+        default: return 50
+        }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -149,10 +159,8 @@ extension ShowDetailsViewController: UITableViewDataSource {
             let imageCell = _showDetailsTableView.dequeueReusableCell(withIdentifier: "ShowImageTableViewCell", for: indexPath) as! ShowImageTableViewCell
             
             if let showDetails = self._showDetails {
-                imageCell.configure(imageUrl: showDetails.imageUrl, showId: showDetails.id)
+                imageCell.configure(imageUrl: showDetails.imageUrl)
             }
-            
-            imageCell.configure(imageUrl: "", showId: "")
             return imageCell
             
         case 1:
@@ -165,8 +173,16 @@ extension ShowDetailsViewController: UITableViewDataSource {
                 }
             }
             
-            descriptionCell.configure(showDescription: "", showTitle: "No shows available 😕" , numberOfEpisodes: 0)
-            return descriptionCell
+            if
+                let showDetails = self._showDetails,
+                let episodesList = self._episodesList
+            {
+                descriptionCell.configure(showDescription: showDetails.description, showTitle: showDetails.title, numberOfEpisodes: episodesList.count)
+                return descriptionCell
+            } else {
+                descriptionCell.configure(showDescription: "", showTitle: "No shows available 😕" , numberOfEpisodes: 0)
+                return descriptionCell
+            }
             
         default:
             let episodeCell = _showDetailsTableView.dequeueReusableCell(withIdentifier: "EpisodeTableViewCell", for: indexPath) as! EpisodeTableViewCell

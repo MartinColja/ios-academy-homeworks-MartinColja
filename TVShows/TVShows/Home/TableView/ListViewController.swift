@@ -4,9 +4,9 @@ import Alamofire
 import CodableAlamofire
 
 
-class HomeViewController: UIViewController {
+class ListViewController: UIViewController {
     
-    private var _shows: [Show]?
+    var shows: [Show]?
     
     var loginUser: LoginUser?
     
@@ -17,56 +17,33 @@ class HomeViewController: UIViewController {
             _TVShowTableView.estimatedRowHeight = 44
         }
     }
+}
+
+extension ListViewController: UITableViewDelegate {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        guard let token = loginUser?.token else {
-            return
-        }
-        
-        SVProgressHUD.show()
-        let headers = ["Authorization" : token]
-        
-        Alamofire    
-            .request("https://api.infinum.academy/api/shows",
-                     method: .get,
-                     encoding: JSONEncoding.default,
-                     headers: headers)
-            .validate()
-            .responseDecodableObject(keyPath: "data", decoder: JSONDecoder()) { [weak self] (dataResponse: DataResponse<[Show]>) in
-                
-                SVProgressHUD.dismiss()
-                switch dataResponse.result {
-                case .success(let show):
-                    self?._shows = show
-                    self?._TVShowTableView.reloadData()
-                case .failure(let error):
-                    print("Api error: \(error).")
-                }
-                
-        }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return _createDeleteAction(tableView, editActionsForRowAt: indexPath)
         
     }
     
-}
-
-extension HomeViewController: UITableViewDelegate {
-    
-     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
+    private func _createDeleteAction(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction  = UITableViewRowAction(style: .default, title: "\u{2718}\n Delete") { (rowAction, indexPath) in
-
-            self._shows?.remove(at: indexPath.row)
             
+            self.shows?.remove(at: indexPath.row)
+            tableView.deselectRow(at: indexPath, animated: true)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         }
         return [deleteAction]
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let loginUser = self.loginUser
-        guard let show = self._shows?[indexPath.row] else {
+        guard let show = self.shows?[indexPath.row] else {
             return
         }
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
@@ -82,28 +59,21 @@ extension HomeViewController: UITableViewDelegate {
     
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let showList = self._shows else {
+        guard let showList = self.shows else {
             return 1 //jer planiram stavit label empty ak alamofire nije uspio pa je referenca nula ili neki drugi slucaj di se to dogadja ak postoji
         }
         return showList.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = _TVShowTableView.dequeueReusableCell(withIdentifier: "TVShowTableViewCell", for: indexPath) as! TVShowTableViewCell
         
-        if let showList = self._shows {
+        if let showList = self.shows {
             let item = showList[indexPath.row]
-            cell.configure(with: item)
-        } else {
-            let item = Show(id: "empty", title: "empty 😕", likesCount: 0)
             cell.configure(with: item)
         }
         
