@@ -18,6 +18,7 @@ class AddEpisodeViewController: UIViewController {
     @IBOutlet private weak var _episodeNumberTextField: UITextField!
     @IBOutlet private weak var _episodeDescriptionTextField: UITextField!
     
+    @IBOutlet weak var _episodeImageVIew: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,9 @@ class AddEpisodeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    @IBAction func addImageButtonAction(_ sender: Any) {
+        _chooseImageFromPhone()
+    }
     
     private func _configViewController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel",
@@ -54,21 +58,85 @@ class AddEpisodeViewController: UIViewController {
     
     @objc func _didSelectAddShow() {
         guard
-            let token = loginUser?.token,
-            let showId = showDetails?.id
+            let token = loginUser?.token
         else {
             return
         }
-        _postEpisodeToApi(showId: showId, token: token)
+        _postImageToApi(token: token)
     }
     
-    func _postEpisodeToApi(showId: String, token: String ) {
+    private func _chooseImageFromPhone() -> () {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo library", style: .default) { (action: UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func _postImageToApi(token: String) {
+        let headers = ["Authorization": token]
+        guard let image = _episodeImageVIew.image else {
+            return
+        }
+        let imageByteData = UIImagePNGRepresentation(image)!
+        
+        Alamofire
+            .upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(imageByteData,
+                                         withName: "file",
+                                         fileName: "image.png",
+                                         mimeType: "image/png")
+            }, to: "https://api.infinum.academy/api/media",
+               method: .post,
+               headers: headers) { [weak self] result in
+                switch result {
+                case .success(let uploadRequest, _, _):
+                    self?._processUploadRequest(uploadRequest)
+                case .failure(let encodingError):
+                    print(encodingError)
+                }
+                
+        }
+    }
+    
+    private func _processUploadRequest(_ uploadRequest: UploadRequest) {
+        uploadRequest
+            .responseDecodableObject(keyPath: "data") { [weak self] (response:
+                DataResponse<Media>) in
+                switch response.result {
+                case .success(let media):
+                    print("DECODED: \(media)")
+                    print("Proceed to add episode call...")
+                    self?._postEpisodeToApi(mediaId: media.id)
+                case .failure(let error):
+                    print("FAILURE: \(error)")
+                }
+        }
+    }
+    
+    private func _postEpisodeToApi(mediaId: String ) {
+        
+        guard
+            let token = self.loginUser?.token,
+            let showId = self.showDetails?.id
+        else {
+            return
+        }
         
         SVProgressHUD.show()
         
         let parameters: [String: String] = [
             "showId" : showId,
-            "mediaId": "",
+            "mediaId": mediaId,
             "title" : self._episodeTitleTextField.text!,
             "description": self._episodeDescriptionTextField.text!,
             "episodeNumber": self._episodeNumberTextField.text!,
@@ -110,4 +178,22 @@ class AddEpisodeViewController: UIViewController {
                 }
         }
     }
+}
+
+extension AddEpisodeViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        _episodeImageVIew.image = image
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension AddEpisodeViewController: UINavigationControllerDelegate {
+        
 }
