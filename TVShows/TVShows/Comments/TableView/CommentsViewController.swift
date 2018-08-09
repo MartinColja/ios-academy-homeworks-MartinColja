@@ -10,7 +10,9 @@ class CommentsViewController: UIViewController {
     @IBOutlet private weak var _newCommentTextField: UITextField!
     
     @IBAction func _addCommentButtonAction(_ sender: Any) {
-        _postEpisodeCommentApiCall()
+        if _newCommentTextField.text != "" {
+            _postEpisodeCommentApiCall()
+        }
     }
     
     @IBOutlet weak var _commentsTableView: UITableView! {
@@ -23,6 +25,7 @@ class CommentsViewController: UIViewController {
     
     var loginUser: LoginUser?
     var episodeDetails: EpisodeDetails?
+    private var _scrollOffset: CGFloat?
     
     private var _commentsList: [AquiredComment]?
     
@@ -146,36 +149,39 @@ class CommentsViewController: UIViewController {
     }
     
     @objc private func _navigateBackActionHandler() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        
-        let episodeDetailsViewController =
-            storyboard.instantiateViewController(withIdentifier: "EpisodeDetailsViewController") as! EpisodeDetailsViewController
-        
-        episodeDetailsViewController.loginUser = self.loginUser
-        episodeDetailsViewController.episodeId = self.episodeDetails?.id
-        
-        navigationController?.setViewControllers([episodeDetailsViewController], animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func keyboardWillAppear(_ notification: Notification) {
-       _adjustKeyboard(Constants.InsetDirection.Upwards, notification)
+        _adjustKeyboard(Constants.InsetDirection.Upwards, notification)
+        _commentsScrollView.panGestureRecognizer.isEnabled = false
     }
     
     @objc func keyboardWillDisappear(_ notification: Notification) {
+        _commentsScrollView.panGestureRecognizer.isEnabled = true
         _adjustKeyboard(Constants.InsetDirection.Downwards, notification)
     }
     
     private func _adjustKeyboard(_ direction: Constants.InsetDirection, _ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardFrame = keyboardFrame.cgRectValue
-            let inset: UIEdgeInsets
+            let negInset: UIEdgeInsets
+            let pozInset: UIEdgeInsets
             switch direction {
             case .Upwards:
-                inset = UIEdgeInsetsMake(0, 0, keyboardFrame.size.height + 10, 0);
+                let height = keyboardFrame.size.height + 10
+                pozInset = UIEdgeInsetsMake(0, 0, height, 0)
+                negInset = UIEdgeInsetsMake(height, 0, 0, 0)
+                _scrollOffset = keyboardFrame.size.height
             case .Downwards:
-                inset = UIEdgeInsets.zero
+                pozInset = .zero
+                negInset = .zero
+                _scrollOffset = 0.0
             }
-            _commentsScrollView.contentInset = inset
+            _commentsScrollView.contentInset = pozInset
+            _commentsTableView.contentInset =  negInset
+            print("ovdjeSam")
+
         }
     }
 }
@@ -204,6 +210,5 @@ extension CommentsViewController: UITableViewDataSource {
         commentCell.config(username: userMail, comment: comment)
         return commentCell
     }
-    
 }
 

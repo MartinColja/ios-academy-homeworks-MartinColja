@@ -33,7 +33,7 @@ class EpisodeDetailsViewController: UIViewController {
         
         commentsViewController.episodeDetails = _episodeDetails
         commentsViewController.loginUser = loginUser
-        navigationController?.setViewControllers([commentsViewController], animated: true)
+        navigationController?.pushViewController(commentsViewController, animated: true)
     }
     @IBAction private func _navigateBackButtonAction(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
